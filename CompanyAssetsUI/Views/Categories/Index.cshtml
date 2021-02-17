@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CompanyAssetsUI.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<span>active </span><span style="" class="display-4 text-info">Categories</span>
+
+                    <p>
+                        <a asp-action="Create" class="btn btn-outline-info btn-sm">Create New</a>
+                        <a asp-action="Deactivated" class="btn btn-outline-info btn-sm">Deactivated Categories</a>
+                    </p>
+<div class="table-responsive box-shadow shadow-lg">
+    <table class="table"
+           id="table"
+           data-toggle="table"
+           data-search="true"
+           data-show-columns="true"
+           data-show-toggle="true"
+           data-virtual-scroll="false"
+           data-height="600"
+           data-minimum-count-columns="3"
+           data-show-button-text="true"
+           data-icons-prefix="icon"
+           data-icons="icons"
+           data-pagination="true"
+           data-page-list="[10, 25, 50, 100, all]"
+           data-show-footer="false"
+           data-search-align="left"
+           data-buttons-align="right"
+           data-buttons-class="info"
+           data-page-class="info"
+           data-buttons-prefix="btn-sm btn"
+           table-borderless="false"
+           table-bordered="true"
+           data-sortable="true">
+        <thead>
+            <tr>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.CategoryEOLMonths)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.CategoryActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryComment)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.Depreciation)
+                </th>
+                <th class="text-right">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryEOLMonths)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryComment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Depreciation.DepreciationDescription)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-outline-info btn-sm">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-outline-info btn-sm">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+        window.icons = {
+            refresh: 'ion-md-refresh',
+            columns: 'ion-md-menu',
+            toggle: 'ion-md-expand'
+        }
+
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+
+
+</script>

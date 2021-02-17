@@ -1,0 +1,37 @@
+﻿@model CompanyAssetsUI.Models.Depreciation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<span class="display-4 text-info">Create</span><span> new depreciation method</span>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DepreciationName" class="control-label"></label>
+                <input asp-for="DepreciationName" class="form-control" />
+                <span asp-validation-for="DepreciationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepreciationDescription" class="control-label"></label>
+                <input asp-for="DepreciationDescription" class="form-control" />
+                <span asp-validation-for="DepreciationDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-info">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

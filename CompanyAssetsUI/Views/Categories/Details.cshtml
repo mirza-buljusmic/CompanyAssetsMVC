@@ -1,0 +1,50 @@
+﻿@model CompanyAssetsUI.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<span class="display-4 text-info">Details</span><span> for category </span>
+<br />
+
+<div>
+    <br />
+    <h4>@Html.DisplayFor(model => model.CategoryName)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryEOLMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryEOLMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryActive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryActive)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryComment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryComment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Depreciation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Depreciation.DepreciationDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-outline-info btn-sm">Edit</a> 
+    <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to List</a>
+</div>

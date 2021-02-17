@@ -1,0 +1,129 @@
+﻿@model IEnumerable<CompanyAssetsUI.Models.Supplier>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<span>active </span><span style="" class="display-4 text-info">Suppliers</span>
+
+                    <p>
+                        <a asp-action="Create" class="btn btn-sm btn-outline-info">Create New</a>
+                        <a asp-action="Deactivated" class="btn btn-sm btn-outline-info">Deactivated Suppliers</a>
+                    </p>
+<div class="table-responsive box-shadow shadow-lg">
+    <table class="table"
+           id="table"
+           data-toggle="table"
+           data-search="true"
+           data-show-columns="true"
+           data-show-toggle="true"
+           data-virtual-scroll="false"
+           data-height="600"
+           data-minimum-count-columns="3"
+           data-show-button-text="true"
+           data-icons-prefix="icon"
+           data-icons="icons"
+           data-pagination="true"
+           data-page-list="[10, 25, 50, 100, all]"
+           data-show-footer="false"
+           data-search-align="left"
+           data-buttons-align="right"
+           data-buttons-class="info"
+           data-page-class="info"
+           data-buttons-prefix="btn-sm btn"
+           table-borderless="false"
+           table-bordered="true"
+           data-sortable="true">
+        <thead>
+            <tr>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.SupplierName)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.SupplierDescription)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.SupplierEmail)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.SupplierContactFirstName)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.SupplierContactLastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplierContactEmail)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.SupplierCity)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.SupplierAddress)
+                </th>
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.SupplierActive)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th class="text-right">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierContactFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierContactLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierContactEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.CountryDescription)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SupplierID" class="btn btn-outline-info btn-sm">Edit</a> 
+                        <a asp-action="Details" asp-route-id="@item.SupplierID" class="btn btn-outline-info btn-sm">Details</a> 
+                        <a asp-action="Delete" asp-route-id="@item.SupplierID" class="btn btn-outline-danger btn-sm">Deactivate</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+    window.icons = {
+        refresh: 'ion-md-refresh',
+        columns: 'ion-md-menu',
+        toggle: 'ion-md-expand'
+    }
+
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+
+
+</script>

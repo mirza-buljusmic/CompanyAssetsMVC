@@ -1,0 +1,64 @@
+﻿@model CompanyAssetsUI.Models.Asset
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Asset</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AssetID" />
+            <div class="form-group">
+                <label asp-for="CatalogueID" class="control-label"></label>
+                <select asp-for="CatalogueID" class="form-control" asp-items="ViewBag.CatalogueID"></select>
+                <span asp-validation-for="CatalogueID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetPurchaseDate" class="control-label"></label>
+                <input asp-for="AssetPurchaseDate" class="form-control" />
+                <span asp-validation-for="AssetPurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetExpirationDate" class="control-label"></label>
+                <input asp-for="AssetExpirationDate" class="form-control" />
+                <span asp-validation-for="AssetExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetPrice" class="control-label"></label>
+                <input asp-for="AssetPrice" class="form-control" />
+                <span asp-validation-for="AssetPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssetValue" class="control-label"></label>
+                <input asp-for="AssetValue" class="form-control" />
+                <span asp-validation-for="AssetValue" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AssetActive" /> @Html.DisplayNameFor(model => model.AssetActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeID" class="control-label"></label>
+                <select asp-for="OfficeID" class="form-control" asp-items="ViewBag.OfficeID"></select>
+                <span asp-validation-for="OfficeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,40 @@
+﻿@model CompanyAssetsUI.Models.Country
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<span class="display-4 text-info">Deactivate</span>
+
+<h6>Are you sure you want to deactivate this country?</h6>
+<div>
+    <br />
+    <h4>@Html.DisplayFor(model => model.CountryDescription)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CountryVisible)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CountryVisible)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CountryId" />
+        <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm" /> 
+        <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to List</a>
+    </form>
+</div>

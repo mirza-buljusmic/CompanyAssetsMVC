@@ -4,7 +4,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<span class="display-4 text-info">Edit</span><span> catalogue product</span>
+<span class="display-4 text-info">Edit</span><span> category</span>
+<div>
+    <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to List</a>
+</div>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -43,9 +47,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index" class="text-info">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

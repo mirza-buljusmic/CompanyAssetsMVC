@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Documentation";
+}
+
+
+<div class="text-left float-right">
+   
+</div>
+<span></span><span class=" display-4 text-info">Documentation</span><br />
+
+    <input type="text" id="searchText" onkeyup="searchText()" placeholder="Search text..."/>
+    <div>
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td class="font-weight-bold">Scope</td>
+                    <td>The scope of this web-application is to have a functional CRUD environment against a SQL-server using <i>ASP.Net CORE with Entity Framework MVC.</i> Basic functionality and basic reporting, and administrative functions. Time allowing, some front end and cosmetic work will be done for a coherent look and feel. A decision has to made regarding the purchase price field, as .NET Core has trouble validating decimal numbers with comma as decimal separator, if the field should be left as decimal (hence making it troublesome to enter decimal values), or simply made to an <i>integer</i> field. As of now the field is decimal and entries can only be made in integers. <br /><br /> Added to the <i>original scope</i> is <b>supplier</b> management. <b>Catalogue</b> of company approved products and a <b>replacement</b> function where assets can be replaced with newer models. A <b>purchase list</b> can also be generated
+                        <br /><br />
+                        <ol><b>TO-DO (future functionality)</b>
+                            <li>Make decimal numbers with comma as decimal separator work (cannot make the .net core validation to work)</li><br />
+                            <li>Make the display of dates to ISO standard, .net Core shows only en-us standard</li><br />
+                            <li>Move more information from the Assets table to Catalogue table, such as <i>category</i> and <i>price.</i></li><br />
+                            <li>Suppliers should have more elaborate functionality: i.e. HP Europe should have regional subsidiaries connected so when a purchase order is sent, regional subsidiaries should make the deliveries to our regional offices</li><br />
+                            <li>Purchase list should generate a purchase order to each supplier.</li><br />
+                            <li>Categories should have depreciation method, as different categories could have different depreciation method apllied. As of now, <i>straight-line</i> depreciation with 10% of purchase price scrap value is assumed for all assets.</li><br />
+                            <li>More information on Offices. Address, Phone, e-mail etc..</li><br />
+                            <li>More extensive reporting</li><br />
+                            <li>The whole documentation could be made database driven</li><br />
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="font-weight-bold">Assets</td>
+                    <td>The functionality of the Assets page is simple CRUD.<br />Upon creating a new asset, new asset is selected from a  list of approved, non obsolete assets/products from the catalogue. Only the purchase date is entered, and the application will calculate the expiry date based on the category of the asset. An asset must belong to a category. List of all active assets is shown with assets that have past their <i>End of life</i> date in red. Assets <b>cannot</b> be deleted, ony deactivated. Reason for this is historical financial functionality, otherwise it will affect the correctness of reports. Assets can be reactivated under the <i>Admin</i> menu. Assets are depreciated using a <i>straight-line</i> method with 10% of purchase price as scrap value. Depreciations are for now generated under the <i>Admin > Recalculations</i> menu.</td>
+                </tr>
+                <tr>
+
+                    <td class="font-weight-bold">Categories</td>
+                    <td>The Categories are used to categorise the assets into functional groups and to determine the Lifespan of a corresponding asset. Any number of categories can be added to the application. <b>**NOTE:</b> The Lifespan duration is entered in months. Categories are mainly deactivated, not deleted. If a <i>category</i> is deactivated all the assets under that category will not be shown. This is an easy way of hiding a group of assets <b>**NOTE:</b> Activation of deactivated categories is found under the <i>Admin</i> menu</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Currencies</td>
+                    <td>Currencies for different office locations and countries. Currencies are entered in relation to the US Dollar, i.e. how many of the local currencie goes to a Dollar. <i>Ex: 8,80 Swedish Krona to a US Dollar.</i> <b>**Note:</b> All values are entered in <b class="text-danger"><i>cents</i></b> ex: 880 = 8,80 | 90 = 0,90 etc.. This is a work-around for the .NET Core's inability to handle and validate comma as decimal separator</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Offices</td>
+                    <td>Simple list of regional offices, with a currency</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Reports</td>
+                    <td>
+                        <b>Reporting functions</b>
+                        <ul>
+                            <li><b><i>Dashboard Assets purchase value</i></b> Dashboard for asset values per office with graphs. Based on purchase price values of assets</li>
+                            <li><br /></li><li><b><i>Dashboard Assets depreciated value</i></b> Dashboard for asset values per office with graphs. Based on depreciated values of assets</li>
+                            <li><br /></li>
+                            <li><b><i>Dashboard Categories purchase value</i></b> Dashboard for category values with graphs. Based on purchase price values of assets</li>
+                            <li><br /></li>
+                            <li><b><i>Dashboard Categories depreciated value</i></b> Dashboard for category values with graphs. Based on depreciated values of assets</li>
+                            <li><br /></li>
+                            <li><b><i>Show expired assets</i></b> List of expired assets for all offices with approximate cost of replacement, based on the purchase price.</li>
+                            <li><br /></li>
+                            <li><b><i>Active assets for an office </i></b> List of all active assets for a selected office, with asset prices converted to local currency. Functionality for choosing between expired only or all will be added in the future.</li>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Admin</td>
+                    <td><b>Administrative functions</b>
+                        <ul>
+                            <li><b><i>Recalculate expiration dates</i></b> In case of database inconsistencies, or if additional data is entered manually into the database-table, there could be incorrect expiration dates for a given asset. To remedy such an inconsistency <i>Recalculate expiration dates</i> function will recalculate new expiration date for <b>all assets</b>, based on the assets purchase date.</li>
+                            <li><br /></li>
+                            <li><b><i>Recalculate asset depreciation</i></b> Recalculates asset value depreciation based on lifespan and a assumed salvage value of 10% of purchase price.</li>
+                            <li><br /></li>
+                            <li><b><i>Deactivated assets</i></b> displays all inactive/deactivated assets, with a possibility to reactivate them. The list of inactive/deactivated assets is kept for historical financial reasons and reporting correctness.</li>
+                            <li><br /></li>
+                            <li><b><i>Deactivated currencies</i></b> displays all <i>deactivated</i> currencies with a option to reactivate them</li>
+                            <li><b><i>Deactivated categories</i></b> displays all <i>deactivated</i> categories with a option to reactivate them</li>
+                            <li><b><i>Deactivated offices</i></b> displays all <i>deactivated</i> regional offices with a option to reactivate them</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Purchase</td>
+                    <td><b>Purchasing functions</b>
+                        <ul>
+                            <li><b><i>Purchase lists</i></b> List of assets that are to be purchased per vendor. Purchase list takes into consideration any replacements from the <i>Replacement</i> list.</li>
+                            <li></li>
+                            <li><b><i>Catalogue</i></b> List of company approved products</li>
+                            <li></li>
+                            <li><b><i>Suppliers</i></b> Manage company approved suppliers</li>
+                            <li></li>
+                            <li><b><i>Replacements</i></b> Which new models old obsolete assets are replaced with.</li>
+                            <li></li>
+
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        window.icons = {
+            refresh: 'ion-md-refresh',
+            columns: 'ion-md-menu',
+            toggle: 'ion-md-expand'
+        }
+
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+
+    </script>

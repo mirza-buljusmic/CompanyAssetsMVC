@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<span>active </span><span style="" class="display-4 text-info">Catalogue products</span>
+<span style="" class="display-4 text-info">Catalogue products</span><span> active </span>
 
 <p>
     <a asp-action="Create" class="btn btn-outline-info btn-sm">Create New</a>
@@ -18,7 +18,6 @@
            data-show-columns="true"
            data-show-toggle="true"
            data-virtual-scroll="false"
-           data-height="630"
            data-minimum-count-columns="3"
            data-show-button-text="true"
            data-icons-prefix="icon"
@@ -33,7 +32,8 @@
            data-buttons-prefix="btn-sm btn"
            table-borderless="false"
            table-bordered="true"
-           data-sortable="true">
+           data-sortable="true"
+           data-filter-control="true">
         <thead>
             <tr>
                 <th data-sortable="true">
@@ -66,37 +66,39 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductDescription)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CataloguePrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SupplierProductID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Obsolete)
-                    </td> 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CatalogueItemActive)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CatalogueID" class="btn btn-outline-info btn-sm">Edit</a> 
-                        <a asp-action="Details" asp-route-id="@item.CatalogueID" class="btn btn-outline-info btn-sm">Details</a> 
-                        <a asp-action="Delete" asp-route-id="@item.CatalogueID" class="btn btn-outline-danger btn-sm">Deactivate</a>
-                    </td>
-                </tr>
+            <tr class="text-info">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CataloguePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SupplierProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Obsolete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatalogueItemActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                
+                    <a asp-action="Edit" asp-route-id="@item.CatalogueID" class="btn btn-outline-info btn-sm" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;
+                    <a asp-action="Details" asp-route-id="@item.CatalogueID" class="btn btn-outline-info btn-sm" data-toggle="tooltip" title="Details"><i class="fas fa-info-circle"></i></a> &nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.CatalogueID" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="Deactivate"><i class="fas fa-trash-alt"></i></a>
+                </td>
+                
+            </tr>
             }
         </tbody>
     </table>

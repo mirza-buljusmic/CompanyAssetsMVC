@@ -1,0 +1,167 @@
+﻿@model IEnumerable<CompanyAssetsUI.Models.Asset>
+
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+
+<span style="" class="display-4 text-info">Assets</span><span> expired </span>
+
+
+<p>
+    <a asp-action="Index" asp-controller="Assets" class="btn btn-outline-info btn-sm">Back to Assets</a>
+
+</p>
+<!--<input type="text" id="searchName" onkeyup="searchName()" placeholder="Search name...">-->
+
+<div class="table-responsive">
+    <table class="table"
+           id="table"
+           cellpadding=""
+           data-toggle="table"
+           data-search="true"
+           data-show-columns="true"
+           data-show-toggle="true"
+           data-virtual-scroll="false"
+           data-minimum-count-columns="3"
+           data-show-button-text="true"
+           data-icon-size="sm"
+           data-icons-prefix="icon"
+           data-icons="icons"
+           data-pagination="true"
+           data-page-list="[10, 25, 50, 100, all]"
+           data-show-footer="false"
+           data-search-align="left"
+           data-buttons-align="right"
+           data-buttons-class="info"
+           data-page-class="info"
+           data-buttons-prefix="btn-sm btn"
+           table-borderless="true"
+           table-bordered="false"
+           data-sortable="true">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catalogue.ProductName)
+                </th>
+                <th data-visible="false" data-sortable="true">
+                    @Html.DisplayNameFor(model => model.AssetPurchaseDate)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.AssetExpirationDate)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.AssetWarningDate)
+                    </th>*@
+                <th data-visible="false">
+                    @Html.DisplayNameFor(model => model.AssetPrice)
+                </th>
+
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.Office)
+                </th>
+                <th data-sortable="true">
+                    @Html.DisplayNameFor(model => model.Catalogue.Category.CategoryName)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.AssetActive)
+                </th>
+                <th></th>*@
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                if (item.AssetActive)
+                {
+
+                    int daysLeft = (item.AssetExpirationDate - DateTime.Today).Days;
+                    <tr class="@(daysLeft < 1 ? "text-info" : "")">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Catalogue.ProductName)
+                        </td>
+                        <td>
+                            @item.AssetPurchaseDate.ToShortDateString()
+                        </td>
+
+
+                        <td>
+                            @item.AssetExpirationDate.ToShortDateString()
+                        </td>
+                        @*<td>
+                        @item.AssetWarningDate.ToShortDateString()
+                    </td>*@
+                        <td class="text-right">
+                            @Html.DisplayFor(modelItem => item.AssetPrice)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Office.OfficeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Catalogue.Category.CategoryName)
+                        </td>
+                        @*<td>
+                        @Html.DisplayFor(modelItem => item.AssetActive)
+                    </td>
+
+                    <td>
+                            <a asp-action="Edit" asp-route-id="@item.AssetId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.AssetId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.AssetId">Delete</a>
+                        </td>*@
+                    </tr>
+                }
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Cost of replacing</td>
+                <td></td>
+                <td></td>
+                <td class="text-right">@ViewData["sumPrice"]</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        @*<tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td data-visible="false"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Cost of replacing</td>
+                <td></td>
+                <td data-visible="false"></td>
+                <td class="text-right">@ViewData["sumPrice"]</td>
+                <td>USD</td>
+                <td></td>
+            </tr>
+        </tfoot>*@
+    </table>
+</div>
+<script>
+    window.icons = {
+        refresh: 'ion-md-refresh',
+        columns: 'ion-md-menu',
+        toggle: 'ion-md-expand'
+    }
+
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+
+</script>

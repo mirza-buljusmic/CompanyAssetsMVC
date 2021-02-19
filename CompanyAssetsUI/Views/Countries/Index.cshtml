@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<span>active </span><span style="" class="display-4 text-info">Countries</span>
+<span style="" class="display-4 text-info">Countries</span><span> active </span>
 
 <p>
     <a asp-action="Create" class="btn btn-outline-info btn-sm">Create New</a>
@@ -18,7 +18,6 @@
            data-show-columns="true"
            data-show-toggle="true"
            data-virtual-scroll="false"
-           data-height="600"
            data-minimum-count-columns="3"
            data-show-button-text="true"
            data-icons-prefix="icon"
@@ -51,7 +50,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="text-info">
                     <td>
                         @Html.DisplayFor(modelItem => item.CountryName)
                     </td>
@@ -62,9 +61,9 @@
                         @Html.DisplayFor(modelItem => item.CountryVisible)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.CountryId" class="btn btn-outline-info btn-sm">Edit</a> 
-                        <a asp-action="Details" asp-route-id="@item.CountryId" class="btn btn-outline-info btn-sm">Details</a> 
-                        <a asp-action="Delete" asp-route-id="@item.CountryId" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.CountryId" class="btn btn-outline-info btn-sm" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a> &nbsp;
+                        <a asp-action="Details" asp-route-id="@item.CountryId" class="btn btn-outline-info btn-sm" data-toggle="tooltip" title="Details"><i class="fas fa-info-circle"></i></a> &nbsp;
+                        <a asp-action="Delete" asp-route-id="@item.CountryId" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" title="Deactivate"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             }

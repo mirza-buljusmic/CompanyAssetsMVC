@@ -161,7 +161,7 @@ namespace CompanyAssetsUI.Controllers
         {
             var catalogue = await _context.Catalogues.FindAsync(id);
             catalogue.CatalogueItemActive = false;
-            _context.Catalogues.Remove(catalogue);
+            _context.Catalogues.Update(catalogue);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

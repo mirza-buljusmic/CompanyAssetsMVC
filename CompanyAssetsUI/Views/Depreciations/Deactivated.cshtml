@@ -10,14 +10,13 @@
     <a asp-action="Index" class="btn btn-outline-info btn-sm">Active Depr.</a>
 </p>
 <div class="table-responsive box-shadow shadow-lg">
-    <table class="table"
+    <table class="table table-borderless"
            id="table"
            data-toggle="table"
            data-search="true"
            data-show-columns="true"
            data-show-toggle="true"
            data-virtual-scroll="false"
-           data-height="450"
            data-minimum-count-columns="3"
            data-show-button-text="true"
            data-icons-prefix="icon"
@@ -30,8 +29,8 @@
            data-buttons-class="info"
            data-page-class="info"
            data-buttons-prefix="btn-sm btn"
-           table-borderless="false"
-           table-bordered="true"
+           table-borderless="true"
+           table-bordered="false"
            data-sortable="true">
 
 
@@ -49,7 +48,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="text-info">
                     <td>
                         @Html.DisplayFor(modelItem => item.DepreciationName)
                     </td>
@@ -59,7 +58,7 @@
                     <td>
                         @*<a asp-action="Edit" asp-route-id="@item.DepreciationID">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.DepreciationID">Details</a> |*@
-                        <a asp-action="Activate" asp-route-id="@item.DepreciationID" class="btn btn-outline-success btn-sm">Activate</a>
+                        <a asp-action="Activate" asp-route-id="@item.DepreciationID" class="btn btn-outline-success btn-sm" data-toggle="tooltip" title="Activate"><i class="far fa-check-circle"></i></a>
                     </td>
                 </tr>
             }
@@ -71,12 +70,22 @@
         window.icons = {
             refresh: 'ion-md-refresh',
             columns: 'ion-md-menu',
-            toggle: 'ion-md-expand'
+            toggle: 'ion-md-filing'
         }
 
         $(document).ready(function () {
             $('#table').DataTable();
         });
 
-
+    $(function () {
+        $('label input').blur(function () {
+            var icons = {}
+            $('label').each(function () {
+                icons[$(this).find('span').text()] = $(this).find('input').val()
+            })
+            $table.bootstrapTable('destroy').bootstrapTable({
+                icons: icons
+            })
+        })
+    })
 </script>

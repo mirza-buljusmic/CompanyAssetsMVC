@@ -4,7 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
-<span class="display-4 text-info">Details</span><span> for asset </span><br />
+<span class="display-4 text-info">Details</span><span> for asset </span>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.AssetID" class="btn btn-outline-info btn-sm">Edit</a>
+    <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to List</a>
+</div>
 
 <div>
     <br />
@@ -54,8 +59,4 @@
             @Html.DisplayFor(model => model.Catalogue.ProductDescription)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.AssetID" class="btn btn-outline-info btn-sm">Edit</a> 
-    <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to List</a>
 </div>

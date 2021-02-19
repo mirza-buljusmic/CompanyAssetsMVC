@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<span>deactivated </span><span style="" class="display-4 text-info">Offices</span>
+<span style="" class="display-4 text-info">Offices</span><span> deactivated </span>
 
 <p>
     <a asp-action="Index" class="btn btn-outline-info btn-sm">Active Offices</a>
@@ -17,7 +17,6 @@
            data-show-columns="true"
            data-show-toggle="true"
            data-virtual-scroll="false"
-           data-height="600"
            data-minimum-count-columns="3"
            data-show-button-text="true"
            data-icons-prefix="icon"
@@ -56,7 +55,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="text-info">
                     <td>
                         @Html.DisplayFor(modelItem => item.OfficeName)
                     </td>
@@ -75,7 +74,7 @@
                     <td>
                         @*<a asp-action="Edit" asp-route-id="@item.OfficeID">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.OfficeID">Details</a> |*@
-                        <a asp-action="ActivateOffice" asp-route-id="@item.OfficeID" class="btn btn-outline-success btn-sm">Activate</a>
+                        <a asp-action="Activate" asp-route-id="@item.OfficeID" class="btn btn-outline-success btn-sm" data-toggle="tooltip" title="Activate"><i class="far fa-check-circle"></i></a>
                     </td>
                 </tr>
             }

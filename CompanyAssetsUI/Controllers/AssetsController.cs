@@ -22,7 +22,7 @@ namespace CompanyAssetsUI.Controllers
         public async Task<IActionResult> Index()
         {
             var assetContext = _context.Assets.Include(a => a.Catalogue).Include(a => a.Office).Include(a => a.Catalogue.Category);
-            return View(await assetContext.Where(a => a.AssetActive == true).OrderBy(a=>a.Office.OfficeName).ThenBy(a=>a.Catalogue.Category.CategoryName) .ToListAsync());
+            return View(await assetContext.Where(a => a.AssetActive == true).OrderBy(a=>a.Office.OfficeName).ThenBy(a=>a.Catalogue.Category.CategoryName).ThenBy(a=>a.AssetPurchaseDate).ToListAsync());
         }
         
         // GET: Assets

@@ -110,6 +110,15 @@ namespace CompanyAssetsUI.Controllers
                 {
                     _context.Update(category);
                     await _context.SaveChangesAsync();
+
+                    // Update all Asset's expiration date when Category's EOL has changed
+                    var assets = await _context.Assets.Include(a => a.Catalogue).Where(a => a.Catalogue.CategoryID == category.CategoryId).ToListAsync();
+                    foreach (var item in assets)
+                    {
+                        item.AssetExpirationDate = item.AssetPurchaseDate.AddMonths(category.CategoryEOLMonths);
+                        _context.Update(item);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {

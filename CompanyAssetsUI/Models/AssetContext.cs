@@ -22,6 +22,5 @@ namespace CompanyAssetsUI.Models
         public DbSet<Replacement> Replacements { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Depreciation> Depreciations { get; set; }
-
     }
 }
